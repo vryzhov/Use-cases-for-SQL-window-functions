@@ -15,14 +15,17 @@
 </p>
 
 
-<table style="margin-left: auto; margin-right: auto; border: 0px;">
+<!--table style="margin-left: auto; margin-right: auto; border: 0px;">
   <tr>
    <td>After a presentation followed by prolonged discussion, a thoughtful executive asked, 'How do we know that what we see is a result of chance and not something caused by the change in our business? How is the team to respond to this question? Is there any way to convince ourselves and others that what appears to be a change in business is a result of a chance affecting the metrics? One possible route is the use of control charts.
     </td>
-  <td width="40%"><img src="../pics/case4_1.jpeg" alt="chance or change"/></td>
+  <td width="40%"><img src="../pics/case4_1.jpeg" alt="chance or change" align="right"/></td>
    </tr>
-</table>
+</table-->
 
+
+<img src="../pics/case4_1.jpeg" alt="chance or change" align="right" width="300"/>
+After a presentation followed by prolonged discussion, a thoughtful executive asked, 'How do we know that what we see is a result of chance and not something caused by the change in our business? How is the team to respond to this question? Is there any way to convince ourselves and others that what appears to be a change in business is a result of a chance affecting the metrics? One possible route is the use of control charts.
 
 
 ## Control Charts
