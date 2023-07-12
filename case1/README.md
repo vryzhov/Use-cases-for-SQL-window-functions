@@ -2,7 +2,7 @@
 
 
 
-<div style="display: flex; justify-content: center;k">
+<div style="display: flex; justify-content: center;">
 <img src="../pics/case1_0-alt1.jpg" alt="downloaded from https://www.vecteezy.com/" width="600"/>
 </div>
 
@@ -32,7 +32,7 @@ Typical questions raised by game developers and producers in this context evolve
 
 More involved questions may concern time between transactions, players’ preferences for different items and products, time to the first purchase, most common transactions size and frequency, players’ responses to in-game sales and promotions. Answering these questions often leads to the customer segmentation initiative with the goal to discover players categories characterized by common patterns of purchasing behaviors: players with rare but large monetary transactions vs. players with many small purchases, sales junkies, regular spenders, single product lovers, etc.
 
-In some cases questions related to the sequences of both types of events mixed together arise. For example, how many gold transactions are made between two real money purchases on average? Are players hoarding the gold spending it deliberately to maximize its value? What kind of money purchases are immediately followed by spending the newly obtained gold and what in-game items are bought in these transactions? The last questions are interesting for they reveal preferences of [impulse purchasers](https://en.wikipedia.org/wiki/Impulse_purchase)supposedly acting on a whim. Analyses of purchasing and spending patterns allows developers adjust players’ experience accordingly by delivering them the right offer at the right time. 
+In some cases questions related to the sequences of both types of events mixed together arise. For example, how many gold transactions are made between two real money purchases on average? Are players hoarding the gold spending it deliberately to maximize its value? What kind of money purchases are immediately followed by spending the newly obtained gold and what in-game items are bought in these transactions? The last questions are interesting for they reveal preferences of [impulse purchasers](https://en.wikipedia.org/wiki/Impulse_purchase) supposedly acting on a whim. Analyses of purchasing and spending patterns allows developers adjust players’ experience accordingly by delivering them the right offer at the right time. 
 
 By utilizing SQL windows functions these questions can be answered. However, some preparatory work needs to be done first.
 
