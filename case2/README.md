@@ -2,7 +2,7 @@
 
 
 <div style="display: flex; justify-content: center;">
-    <img src="../pics/case2_0.jpeg" alt="Main pic" width="600"/>
+    <img src="../pics/case2_0.jpeg" alt="Main pic" width="700"/>
 </div>
 
 <p>
