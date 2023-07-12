@@ -42,17 +42,21 @@ First, the ranges of routine variance need to be agreed upon on the basis of ava
 
 Given a time series of observations **X**, the first step is to compute the series of absolute values of differences between each pair of consecutive observations. This series is called the series of *moving ranges* and denoted **mR**. It directly measures the time-to-time variation of **X**. As a time series, **mR** also can be monitored for exceptional variation alongside **X**. All the values of **mR** are non-negative and the only control limit calculated for **mR** is the *upper range limit (URL)* given by the formula **URL = 3.27 * average(mR)**. Then the UCL and LCL for **X** are computed as **UCL/LCL = average(X) plus/minus 2.66 * average(mR)**. The control charts for **X** and **mR** combined together are called *XmR chart of the process*. Let's illustrate these calculations by an example of a certain metric collected for 83 weeks starting in September 2019.
 
-> select * from weekly_stats;
+```sql
+SQL> select * from weekly_stats;
+```
 
-WEEK      |METRIC |
-----------|-------|
-2019-09-02|2154.57|
-2019-09-09|1985.91|
-2019-09-16|1420.28|
-2019-09-23|1586.47|
-...
+|` WEEK           `|`METRIC      `|
+|  :---    |  :--- |
+|2019-09-02|2154.57|
+|2019-09-09|1985.91|
+|2019-09-16|1420.28|
+|2019-09-23|1586.47|
+| ...  | ... |          
+
 The following Snowflake SQL query computes all necessary components of both the control chart and the ranges control chart.
 
+```sql
 with config as ( 
    select date '2019-08-31' as calib_start
         , date '2019-11-20' as calib_end
@@ -83,6 +87,7 @@ select X_mR.*
        end as mR_alert
   from X_mR
  order by week
+```
 
 Parsing it out:
 
