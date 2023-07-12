@@ -3,7 +3,7 @@
 
 
 
-<div style="text-align: center;">
+<div style=" display: flex; justify-content: center;">
 <img src="../pics/case4_0.jpeg" alt="Main pic" width="600"/>
 </div>
 
