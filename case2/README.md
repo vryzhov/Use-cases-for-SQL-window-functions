@@ -66,8 +66,9 @@ select * from T
 The resulting data set may look something like this
 
 
-<img src="../pics/case2_1.jpeg" alt="SQL result 1" align="center" width="60%"/>
-
+<div style="display: flex; justify-content: center;">
+<img src="../pics/case2_1.jpeg" alt="SQL result 1" width="80%"/>
+</div>
 
 The retention rate is easily computed for each cohort and each activity date as the ratio ``active_users/cohort_size``. 
 At the same time the cohort "age" is calculated as the time difference between activity date and install date.
@@ -89,8 +90,9 @@ order by install_date, activity_date
 
 
 
-<img src="../pics/case2_2.jpeg" alt="SQL result 2" align="center" width="60%"/>
-
+<div style="display: flex; justify-content: center;">
+<img src="../pics/case2_2.jpeg" alt="SQL result 2"  width="80%"/>
+</div>
 
 
 Note that this calculation is not entirely accurate because of rounding errors introduced by the date arithmetic of SQL. If we had carried out *install_time* and *session_time* from subquery *P*, more precise version can be obtained with the more accurate statement
@@ -99,9 +101,9 @@ Note that this calculation is not entirely accurate because of rounding errors i
 Finally, plotting retention rates against user age gives us the so called retention curves or retention profiles of the seven daily cohorts.
 
 
-<img src="../pics/case2_3.jpeg" alt="SQL result 2" align="center" width="60%"/>
-
-
+<div style="display: flex; justify-content: center;">
+<img src="../pics/case2_3.jpeg" alt="SQL result 2" width="80%"/>
+</div>
 
 No alt text provided for this image
 Let's consider now the situation when we need to summarize these seven curves, as would be in the case of some sort of campaign running for a week. In short, we need to merge these seven lines into a single retention curve. The most natural way to do so is to compute the average rate over all user ages with the query
@@ -121,11 +123,12 @@ select user_age, mean(retention_rate) as retention_rate
 
 This yields the following result:
 
-<img src="../pics/case2_4.jpeg" alt="SQL result 2" align="center" width="60%"/>
+
+<div style="display: flex; justify-content: center;">
+<img src="../pics/case2_4.jpeg" alt="SQL result 2" width="80%"/>
+</div>
 
 
-<p>
-</p>
 
 ## Discussion and alternative approach
 
@@ -180,8 +183,9 @@ The principal part of calculations is the subquery C. There is no aggregation by
 To obtain the denominator, we need to compute cohort size for each day of the cohort existence, i.e. for each value of *activity_date*. We do it in two steps. First, in D we compute daily installs, and then the subquery S returns the cumulative sum of these counts yielding the cohort size accumulated by the date *activity_date*. The final result is shown below.
 
 
-<img src="../pics/case2_5.jpeg" alt="SQL result 3" align="center" width="60%"/>
-
+<div style="display: flex; justify-content: center;">
+<img src="../pics/case2_5.jpeg" alt="SQL result 3" width="80%"/>
+</div>
 
 <p>
 </p>
@@ -193,20 +197,19 @@ As noted above, in this approach the historical data remains immutable allowing 
 In those situations where two or more cohorts are compared to each other, the query above requires certain modifications. The subquery *P* needs to return the user group identifier *group_name*, window functions in *C* and *S* require partitioning by *group_name*, and *group_name* has to be added to the `group by` clause of subquery *D*. An example for the two group test may look like this.  
 
 
-<img src="../pics/case2_6.jpeg" alt="SQL result 4" align="center" width="60%"/>
+<div style="display: flex; justify-content: center;">
+<img src="../pics/case2_6.jpeg" alt="SQL result 4" width="80%"/>
+</div>
 
 
-<p>
-</p>
 
 The difference between two cohorts is clearly seen here, as well as the day when their retention rates began to separate significantly. After the cohorts completion date, that is, `day 7`, both groups demonstrate similar decay rate (the curves appear almost parallel for days `8-13`). This suggests that the differences in retention might have been caused by different user experience during the cohorts formation period, possibly attributable to accidental and uncontrolled external factors deserving further investigation.
 
 
-<img src="../pics/case2_7.jpeg" alt="SQL result 5" align="center" width="60%"/>
+<div style="display: flex; justify-content: center;">
+<img src="../pics/case2_7.jpeg" alt="SQL result 5" width="80%"/>
+</div>
 
-
-<p>
-</p>
 
 Retention rates computed by averaging over user ages shown above hides these differences and does not reveal fine details. Except for the fact that the retention rate of one group is better than another, there is no additional information to be inferred from this chart.
 
