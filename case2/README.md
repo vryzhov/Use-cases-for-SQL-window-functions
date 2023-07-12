@@ -6,8 +6,8 @@
 <img src="../pics/case2_0.jpeg" alt="Main pic" width="600"/>
 </div>
 
-<p></p>
-
+<p>
+</p>
 
 User retention is one of the most important metrics for many types of business, be it customer retention in retail industry, or magazine subscriber retention, or player retention in video games, or client retention in consulting businesses. It is typically defined for a cohort of users acquired during a period of time and measured as Retention Rate, or more accurately, Return Rate defined as the ratio of users active at a given date over the size of the cohort ([the percentage of your users who return to your app on a given day](https://developer.yahoo.com/flurry/docs/analytics/lexicon/returnrate/)). It is a function of user "age," i.e. the time passed between the date retention is computed for and the date when the user/customer was acquired.
 
@@ -70,6 +70,10 @@ The resulting data set may look something like this
 <img src="../pics/case2_1.jpeg" alt="SQL result 1" width="80%"/>
 </div>
 
+<p>
+</p>
+
+
 The retention rate is easily computed for each cohort and each activity date as the ratio ``active_users/cohort_size``. 
 At the same time the cohort "age" is calculated as the time difference between activity date and install date.
 With the subquery *T* defined above,  
@@ -94,6 +98,9 @@ order by install_date, activity_date
 <img src="../pics/case2_2.jpeg" alt="SQL result 2"  width="80%"/>
 </div>
 
+<p>
+</p>
+
 
 Note that this calculation is not entirely accurate because of rounding errors introduced by the date arithmetic of SQL. If we had carried out *install_time* and *session_time* from subquery *P*, more precise version can be obtained with the more accurate statement
 `floor(datediff(second, install_time, session_time)::float/86400.0) `
@@ -105,7 +112,10 @@ Finally, plotting retention rates against user age gives us the so called retent
 <img src="../pics/case2_3.jpeg" alt="SQL result 2" width="80%"/>
 </div>
 
-No alt text provided for this image
+<p>
+</p>
+
+
 Let's consider now the situation when we need to summarize these seven curves, as would be in the case of some sort of campaign running for a week. In short, we need to merge these seven lines into a single retention curve. The most natural way to do so is to compute the average rate over all user ages with the query
 
 
@@ -128,6 +138,9 @@ This yields the following result:
 <img src="../pics/case2_4.jpeg" alt="SQL result 2" width="80%"/>
 </div>
 
+
+<p>
+</p>
 
 
 ## Discussion and alternative approach
@@ -201,6 +214,8 @@ In those situations where two or more cohorts are compared to each other, the qu
 <img src="../pics/case2_6.jpeg" alt="SQL result 4" width="80%"/>
 </div>
 
+<p>
+</p>
 
 
 The difference between two cohorts is clearly seen here, as well as the day when their retention rates began to separate significantly. After the cohorts completion date, that is, `day 7`, both groups demonstrate similar decay rate (the curves appear almost parallel for days `8-13`). This suggests that the differences in retention might have been caused by different user experience during the cohorts formation period, possibly attributable to accidental and uncontrolled external factors deserving further investigation.
@@ -209,6 +224,9 @@ The difference between two cohorts is clearly seen here, as well as the day when
 <div style="display: flex; justify-content: center;">
 <img src="../pics/case2_7.jpeg" alt="SQL result 5" width="80%"/>
 </div>
+
+<p>
+</p>
 
 
 Retention rates computed by averaging over user ages shown above hides these differences and does not reveal fine details. Except for the fact that the retention rate of one group is better than another, there is no additional information to be inferred from this chart.
