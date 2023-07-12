@@ -46,7 +46,7 @@ Given a time series of observations **X**, the first step is to compute the seri
 SQL> select * from weekly_stats;
 ```
 
-|` WEEK           `|`METRIC      `|
+|`        WEEK        `|`      METRIC       `|
 |  :---    |  :--- |
 |2019-09-02|2154.57|
 |2019-09-09|1985.91|
@@ -91,28 +91,45 @@ select X_mR.*
 
 Parsing it out:
 
-week is the time variable, X - the metric
-config - an alias for parameters calib_start and calib_end specifying the calibration period taken as a period of normal process functioning
-X_mR subquery returns the metrics: week, calibration, X, calib_x, avg_X, mR, c_mR
-calibration is a flag indicating if the week falls within the calibration period. Notice the use of 1 and null (not zero!). Here I rely on ANSI SQL standard for the aggregate functions handling null values.
-calib_x - value of X for weeks inside the calibration period, null otherwise
-avg_x - average of metric over the calibration period. This is the centered horizontal line of the control chart
-mR - moving range computed using lag() function over all weeks
-calib_mR - value of mR for weeks inside the calibration period, null otherwise
+* **week** is the time variable, **X** - the metric
+* **config** - an alias for parameters calib_start and calib_end specifying the calibration period taken as a period of normal process functioning
+* **X_mR** subquery returns the metrics: *week*, *calibration*, *X*, *calib_x*, *avg_X*, *mR*, *c_mR*
+* **calibration** is a flag indicating if the *week* falls within the calibration period. 
+* Notice the use of `1` and `null` (not zero!). Here I rely on ANSI SQL standard for 
+the aggregate functions handling `null` values.
+* **calib_x** - value of *X* for *weeks* inside the calibration period, `null` otherwise
+* **avg_x** - average of *metric* over the calibration period. This is the centered horizontal line of the control chart
+* **mR** - moving range computed using `lag()` function over all weeks
+* **calib_mR** - value of *mR* for *weeks* inside the calibration period, `null` otherwise
+  
+
+
+# The query result
+
 The main query returns all values from X_mR, performs calculations of upper and lower control limits for X and mR as well as the following metrics
 
-avg_mR - average of mR over the calibration period. This is the centered horizontal line for the ranges control chart
-X_alert - an indicator of X outside the control band
-mR_alert - an indicator of mR outside the control band
-First rows of the result display all measurements required to create the XmR control chart
+* **avg_mR** - average of *mR* over the calibration period. This is the centered horizontal line for the ranges control chart
+* **X_alert** - an indicator of *X* outside the control band
+* **mR_alert** - an indicator of *mR* outside the control band
 
-Query output
-and the chart itself with the calibration period of 10 weeks in 2019 marked in green.
+First rows of the result display all measurements required to create the XmR control chart.
 
-No alt text provided for this image
+
+<p>
+<img src="../pics/case4_3.jpeg" alt="Query output" align="center" width="70%"/>
+</p>
+
+The control chart itself with the calibration period of 10 weeks in 2019 marked in green is shown below
+<p>
+<img src="../pics/case4_3.png" alt="Control chart" align="center" width="70%"/>
+</p>
+
 There are eight instances of special cases when the process was out-of-control and three cases of anomalous process variance when the process metric increased or decreased too rapidly. These observations point out to a presence of factors, either internal to the process or external, or both, that call for an investigation aimed to identify assignable causes of anomalies occurred in February-March. Visual inspection also suggests a possibility of systemic changes in process behavior that took place in March. The process variance did not change substantially after the anomalous period in February-March but the process level seems to had lowered. This finding may indicate a need for the re-calibration and subsequent acceptance of the new norm.
 
-Final notes
-Apart from the curious spin on the"chance-change" business dichotomy, control charts are simple and informative tool of statistical process control widely used in the industrial quality control monitoring. A straightforward extension to the case of multivariate processes is the set of control charts created for each process' component metric. This approach, however, fails to detect anomalies in the covariance structure, i.e. in situations when the correlation between two or more variables falls out of the expected range while the variables themselves stay in-control. When the number of monitored metrics is high, tracking all of them and their pairwise correlations becomes impractical. One possible solution to this problem is based on the multidimensional version of the Student's t-statistics usually associated with the name of Harold Hotelling, see the Wikipedia entry on Hotelling's T-squared distribution. A very detailed and insightful explanation is provided in the book "Multivariate Statistical Process Control with Industrial Applications" by Robert L. Mason and John C. Young published in 1987. Similarly to cases when the Student's t-statistics is employed, the multivariate processes studied in this book are assumed to be (close to) the multivariate Normal. Non-normal processes, which are commonplace in the real life, are much more difficult to monitor. Numerous studies have been devoted to the development of control charts techniques free of any distributional assumptions imposed on the monitored process. A comprehensive state-of-the-art is given in the recently published books "Nonparametric Statistical Process Control" (2019) by S. Chakraborti and M. A. Graham and "Distribution-Free Methods for Statistical Process Monitoring and Control" (2020) edited by M. V. Koutars and I. S. Triantafyllou.
+## Final notes
 
-August 2020
+Apart from the "chance-change" business dichotomy, control charts are simple and informative tool of statistical process control widely used in the industrial quality control monitoring. A straightforward extension to the case of multivariate processes is the set of control charts created for each process' component metric. This approach, however, fails to detect anomalies in the covariance structure, i.e. in situations when the correlation between two or more variables falls out of the expected range while the variables themselves stay in-control. When the number of monitored metrics is high, tracking all of them and their pairwise correlations becomes impractical. One possible solution to this problem is based on the multidimensional version of the Student's t-statistics usually associated with the name of Harold Hotelling, see the Wikipedia entry on Hotelling's T-squared distribution. A very detailed and insightful explanation is provided in the book "Multivariate Statistical Process Control with Industrial Applications" by Robert L. Mason and John C. Young published in 1987. Similarly to cases when the Student's t-statistics is employed, the multivariate processes studied in this book are assumed to be (close to) the multivariate Normal. Non-normal processes, which are commonplace in the real life, are much more difficult to monitor. Numerous studies have been devoted to the development of control charts techniques free of any distributional assumptions imposed on the monitored process. A comprehensive state-of-the-art is given in the recently published books "Nonparametric Statistical Process Control" (2019) by S. Chakraborti and M. A. Graham and "Distribution-Free Methods for Statistical Process Monitoring and Control" (2020) edited by M. V. Koutars and I. S. Triantafyllou.
+
+<p align='right'>
+<i>August 2020</i>
+</p>
