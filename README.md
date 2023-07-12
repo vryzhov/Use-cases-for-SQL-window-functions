@@ -3,7 +3,9 @@
 Series of posts originally published on LinkedIn and reproduced here after some editorial work
 
 
-## Case 4: Chance or Change? Control charts as a protection from overreaction
+## [Case 4: Chance or Change? Control charts as a protection from overreaction](https://github.com/vryzhov/sql-texts/tree/master/case4) 
+
+
 
 ## Case 3: Average time to the first purchase and why it is always too optimistic
 
