@@ -3,19 +3,11 @@
 
 
 
-
-
 <div style=" display: flex; justify-content: center;">
-<img src="../pics/case3_0.jpeg" alt="Main pic" width="600"/>
+<img src="../pics/case3_0.jpeg" alt="Main pic" width="700"/>
 </div>
 
 <p></p>
-
-<p style="display: block;">
-<i>Why are our numbers all the way down? What's happening?</i>
-</p>
-
-
 
 
 How would you report the conversion time in a free-to-play game? [User conversion is the event of making a first purchase after the initial period of using the product for free. The time to conversion, i.e. time it takes for a user to become a customer, is an important metric for the evaluation of monetization strategy.] Or, how many sessions does it take a player to pass a level, or finish the tutorial, or reach any other milestone in the game? How about the number of chests players need to open or how much gold to spend to complete the game? Or, how many friends do players make before churning out?
@@ -23,7 +15,6 @@ How would you report the conversion time in a free-to-play game? [User conversio
 Many people won’t hesitate answering these questions. For the conversion time, take all users who made at least one purchase, take the time each of them spent with the product before making the first purchase, then compute the average of these numbers. Let’s say, these calculations yield 3.14 days. Looks quite reasonable. Problem’s solved, right?
 
 Not quite.
-
 
 
 Why is it not the answer you should be satisfied with? There are two reasons. First, the average is meant to be something that people expect to be “expected.” That is, the average temperature is the temperature we anticipate to find if we go to a certain location, average salary is something we most likely to see for a randomly chosen professional working in a particular field, average age is the expected age of a random individual within a given population, etc. Averages are used everywhere to quickly convey what to expect within a specific context. The problem is that the average time to the first purchase of 3.14 days in a freemuim game is simply non-realistic. It implies that every player installing the game today will make her first purchase *on average* after 3.14 days of play. But it is a known fact that the percent of players who ever make a single purchase lies in a single digit range for most free-to-play games. In other words, a huge proportion of players prefer playing for free, never converting to paid customers. How can one expect a random player to convert in three days *on average* then?
