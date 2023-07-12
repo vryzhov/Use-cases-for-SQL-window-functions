@@ -1,5 +1,7 @@
 # Case 2: Daily retention of multi-day cohorts or working with two differently grained temporal metrics
 
+<p>
+</p>
 
 <div style="display: flex; justify-content: center;">
     <img src="../pics/case2_0.jpeg" alt="Main pic" width="700"/>
